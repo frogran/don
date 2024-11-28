@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Gal Fight Against a Rare Cancer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c5282;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2b6cb0;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .image-container {
+            width: 100%;
+            max-height: 800px; /* Instead of fixed height: 400px */
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto; /* Instead of height: 100% */
+            max-height: 800px;
+            object-fit: contain; /* Instead of cover */
+            display: block; /* This ensures no extra space below the image */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .donate-button {
+            background-color: #48bb78;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .donate-button:hover {
+            background-color: #38a169;
+        }
+
+        .share-button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .share-button:hover {
+            background-color: #3182ce;
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-icons a {
+            color: #4a5568;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .share-icons a:hover {
+            color: #2d3748;
+        }
+
+        .expenses-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .expenses-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .expenses-list li::before {
+            content: "•";
+            color: #4299e1;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .image-container {
+                height: 300px;
+            }
+        }
+
+        .back-button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3182ce;
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 24px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #48bb78;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .progress-text {
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/he.html" class="back-button">עברית</a>
+        <h1>Help Gal Bruck Gorfung and his family fight against a rare cancer and keep his dream alive</h1>
+        
+        <div class="image-container">
+            <img src="/images/head-en.webp" alt="Gal's photo">
+        </div>
+
+        <div class="intro">
+            Hello, my name is Gal, and I'm a 31-year-old living in Israel.  I am a graduate student in Neurobiology at Tel Aviv University and a contemporary dancer.  I've dedicated my life to education, dance, and technology, always finding joy in learning, teaching, and creating. However, a rare cancer, Adenoid Cystic Carcinoma (ACC), now threatens my life. I'm reaching out for support as I face the daunting path of treatments for the rest of my life and currently pressing adjuvant treatments at MD Anderson in Houston, Texas so I may continue pursuing my dreams and passions.
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+              <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+              $<span id="current">0</span> raised of $<span id="goal">550000</span>
+            </div>
+          </div>
+
+        <div class="button-container">
+            <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>
+            <button class="share-button" onclick="toggleShareModal()">Share</button>
+        </div>
+
+        <h3>The campaign will be end on Thursday, December 19, 2024</h3>
+        
+        <div class="image-container">
+            <img src="/images/family.webp" alt="Journey photo">
+        </div>
+
+        <h2>My Journey So Far</h2>
+        <p>Growing up in Israel,  I nurtured a love for movement, science, and expression. I was a competitive swimmer (Backstroke) until the age of 17,  after which I began to dance. I danced professionally, even through my military service, and joined companies like KCDC and Inbal Dance Theatre.  My passion for movement and neuroscience led me to accomplish a B.Sc. in computer science and psychology in Tel Aviv university and continue to an M.Sc. in neuroscience. Alongside my academic pursuits, I've taught a wide range of topics and audiences, including dance to the disabled and computer science to refugees' children, believing deeply in the power of education and art to change lives.</p>
+        <p>But about six months ago, my life took an unexpected turn. A small lump on my neck grew into a cancer diagnosis that changed everything and put my life in danger. I went through emergency surgery in Israel about 3 months ago to remove the tumor. Unfortunately, at the surgery it was discovered that the tumor metastasized to two lymph nodes. ACC, a rare and aggressive cancer, requires urgent and specialized treatment—treatment I can't receive in Israel. The tumor, which has aggressively spread, threatens my facial nerves and my ability to speak, eat, and, most devastatingly, dance. To fight this rare cancer, I need to go through Proton Radiation therapy and Chemotherapy at MD Anderson Cancer Center in the United States.</p>
+
+        <div class="image-container">
+            <img src="/images/journey.webp" alt="Need photo">
+        </div>
+
+        <h2>Why I Need Your Help</h2>
+        <p>I've faced many challenges in Israel trying to navigate treatment amidst recent war chaos. The lengthy wait times meant my tumor doubled in size before I could receive surgery. Following my operation, I was advised to pursue Proton Radiation therapy , a highly targeted treatment that reduces the risks of permanent damage and secondary cancers. However, this life-saving therapy isn't available in Israel. After consulting with top oncologists, I was accepted at MD Anderson, where they have leading specialists for ACC.</p>
+        <p>My  insurance will cover only a small fracture of the treatments. However,  other medical, travel, or long-term care expenses are not covered. ACC is notorious for recurrence, requiring continuous follow-ups, facial physiotherapy, and specialized dental and hearing care for the rest of my life (there is no 5 years clearance like in other cancer types). I'm facing high costs that I nor my family simply cannot shoulder alone, and I'm turning to you for help.</p>
+
+        <div class="image-container">
+            <img src="/images/beja.jpg" alt="Support photo">
+        </div>
+
+        <h2>How Your Support Will Help</h2>
+        <ul class="expenses-list">
+            <li>Proton radiation, chemotherapy and associated medical treatments at MD Anderson Cancer Center estimated at $400,000</li>
+            <li>Travel and accommodation expenses as me and a supportive family member stay in the U.S. for 12 weeks of daily treatments estimated at $50,000$</li>
+            <li>Long-term follow-up care for essential therapies and check-ups due to the likelihood of cancer recurrence and side effects estimated at $100,000</li>
+        </ul>
+        <p>By supporting this campaign, you're not only helping me fight cancer but enabling me to continue giving back to the world through teaching and the arts. With each treatment, I'm holding onto the hope that I can dance again, share my passion with others, and one day realize my dream of creating educational programs for children from impoverished backgrounds.</p>
+
+        <div class="image-container">
+            <img src="/images/scar.jpg" alt="Thanks photo">
+        </div>
+
+        <h2>Thank You for Being Part of My Fight</h2>
+        <p>Every donation, share, and word of encouragement brings me closer to recovery and helps me hold onto my dreams. Cancer has taken much from me, but with your support, I'm determined to keep going. I'm grateful for any help, whether it's donating, sharing my story, or keeping me in your thoughts.</p>
+        <p>Thank you for joining me on this journey and for being my strength as I face this fight. Together, we can turn this difficult chapter into one of resilience, hope, and inspiration.</p>
+        
+        <div class="button-container">
+            <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>
+            <button class="share-button" onclick="toggleShareModal()">Share</button>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" onclick="toggleShareModal()"></div>
+    <div class="share-modal" id="shareModal">
+        <h3>Share This Campaign</h3>
+        <div class="share-icons">
+            <a href="#" onclick="share('facebook')"><i class="fab fa-facebook"></i></a>
+            <a href="#" onclick="share('twitter')"><i class="fab fa-twitter"></i></a>
+            <a href="#" onclick="share('whatsapp')"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" onclick="share('linkedin')"><i class="fab fa-linkedin"></i></a>
+            <a href="#" onclick="share('email')"><i class="fas fa-envelope"></i></a>
+            <a href="#" onclick="share('copy')"><i class="fas fa-copy"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleShareModal() {
+            const modal = document.getElementById('shareModal');
+            const backdrop = document.getElementById('modalBackdrop');
+            const isVisible = modal.style.display === 'block';
+            
+            modal.style.display = isVisible ? 'none' : 'block';
+            backdrop.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function share(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("Help Gal Fight Against a Rare Cancer");
+            const text = encodeURIComponent("Please help support Gal's fight against Adenoid Cystic Carcinoma.");
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=${title}&body=${text}%20${url}`;
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                    return;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+            
+            toggleShareModal();
+        }
+    </script>
+    
+    <script>
+        // Replace your existing updateProgress function with this:
+        async function updateProgress() {
+            try {
+                console.log('Fetching amount...');
+                const response = await fetch('/api/amount');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Received data:', data);
+                
+                const amount = data.amount;
+                const goal = 550000; // Match the goal in your HTML
+                
+                // Format amount with commas
+                document.getElementById('current').textContent = amount.toLocaleString();
+                document.getElementById('goal').textContent = goal.toLocaleString();
+                
+                // Calculate and set progress bar width
+                const percentage = Math.min((amount / goal) * 100, 100);
+                document.getElementById('progress').style.width = `${percentage}%`;
+            } catch (error) {
+                console.error('Error in updateProgress:', error);
+            }
+        }
+
+        // Call it once when page loads
+        updateProgress();
+    </script>
+
+</body>
+</html>

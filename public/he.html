@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebrew Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <style>
+        body {
+            direction: rtl;
+        }
+
+        .expenses-list li {
+            padding-right: 1.5rem;
+            padding-left: 0;
+        }
+
+        .expenses-list li::before {
+            right: 0;
+            left: auto;
+        }
+
+        .language-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c5282;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2b6cb0;
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .image-container {
+            width: 100%;
+            max-height: 800px; /* Instead of fixed height: 400px */
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto; /* Instead of height: 100% */
+            max-height: 800px;
+            object-fit: contain; /* Instead of cover */
+            display: block; /* This ensures no extra space below the image */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .donate-button {
+            background-color: #48bb78;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .donate-button:hover {
+            background-color: #38a169;
+        }
+
+        .share-button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .share-button:hover {
+            background-color: #3182ce;
+        }
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-icons a {
+            color: #4a5568;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .share-icons a:hover {
+            color: #2d3748;
+        }
+
+        .expenses-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .expenses-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .expenses-list li::before {
+            content: "•";
+            color: #4299e1;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .image-container {
+                height: 300px;
+            }
+        }
+
+        .back-button {
+            background-color: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 2rem;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #3182ce;
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 24px;
+            background: #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #48bb78;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .progress-text {
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            right: 0; /* For RTL alignment */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: right; /* For RTL alignment */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/index.html" class="back-button">English</a>
+        
+        <h1>עזרו לגל ברוק גורפונג ולמשפחתו להילחם בסרטן</h1>
+        
+        <div class="image-container">
+            <img src="/images/head-he.jpg" alt="Gal's photo">
+        </div>
+
+        <p>קהילה יקרה, משפחה, חברות, חברים ואנשים טובים באמצע הדרך, אני פונה אליכם, אל ליבכם, גם בימים מטלטלים אלו, לסיוע בגיוס 2 מיליון שקלים כדי שבני גל יקבל טיפולים מצילי חיים!</p>
+        <p>התרומה מיועדת לבני האהוב, גל ברוק גורפונג, רקדן מחונן בן 31 אשר אובחן באוגוסט 2024 עם גידול סרטני נדיר ואלים שהתפשט לבלוטת הלימפה. גל עבר ניתוח חירום להסרת הגידול, שהציל את היכולת שלו לדבר, לאכול ולהפעיל את שרירי הפנים, הצוואר והכתפיים. בבדיקה פתולוגית נמצא שמדובר בסרטן מסוג Adenoid Cystic Carcinoma, סרטן נדיר ואלים במיוחד עם סיכוי גבוה שיתפתח שוב ויתפשט לעצבים ולריאות. לכן, בהמלצת האונקולוגים בישראל, גל טס בדחיפות למרכז מיוחד לטיפול בסרטן בטקסס, המתמחה במקרים נדירים ומורכבים כמו שלו.</p>
+        <p>לצערנו מערך הטיפולים והשיקום מכוסה באופן מזערי בביטוח שלו ולכן אנחנו זקוקים לכם כדי להציל את חייו של גל!</p>
+        
+        <div class="button-container">
+            <div class="dropdown">
+                <button class="donate-button" onclick="toggleDropdown(this)">לתרומה</button>
+                <div class="dropdown-content" id="donateDropdown">
+                    <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" target="_blank">PayPal</a>
+                    <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">באתר GiveBack</a>
+                </div>
+            </div>
+            <button class="share-button" onclick="toggleShareModal()">לשיתוף</button>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+              <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+              $<span id="current">0</span> raised of $<span id="goal">550000</span>
+            </div>
+        </div>
+
+        <h3>הגיוס יימשך עד יום חמישי, ה-19 לדצמבר, 2024 </h3>
+
+        <div class="image-container">
+            <img src="/images/family.webp" alt="Journey photo">
+        </div>
+
+        <p>הטיפולים כוללים הקרנות פרוטונים, כימותרפיה, תכנית שיקום ומעקב אחר גרורות למשך שארית חייו. עד כה  לווינו סכום משמעותי עבור סבב הטיפולים הראשון שנדרש בדחיפות, אך אנו זקוקים לעזרתכם כדי שנוכל להצליח לממן את הטיפול המלא, המעקב והשיקום שימנעו מהסרטן להתפתח ולחזור מסוכן ואלים יותר.</p>
+
+        <div class="image-container">
+            <img src="/images/journey.webp" alt="Need photo">
+        </div>
+
+        <p>גל הוא דמות לחיקוי והערצה עבור אחיו וחבריו הרבים בארץ ובעולם. כולם מספרים שהוא תמיד נמצא שם לעזור ולתמוך בסבלנות אין קץ , להצחיק ולעודד בכל דרך אפשרית, עם חיוך וחיבוק אוהבים. יש לו תשוקה אדירה לחיים והוא תמיד נמצא בתנועה: יוצר עבודות מחול מקוריות וגם רוקד בקבוצות מובילות בארץ ובעולם. גל פועל למען הקהילה ולוקח חלק בארגונים חברתיים כמו טק2פיס, היוצרת הזדמנויות בתחום ההיי-טק לפלסטינים וישראלים, ועמותת איל״ן - עמותה לשילוב ילדים ומבוגרים בעלי צרכים מיוחדים. הוא מלא חדוות למידה ומקווה לשוב בהקדם ללימודי תואר מתקדם במעבדת המחקר בתחום הנוירוביולוגיה באוניברסיטת תל אביב.</p>
+
+        <div class="image-container">
+            <img src="/images/help.webp" alt="Support photo">
+        </div>
+
+        <p>גל החל בדחיפות סבב ראשון של הקרנות וכימותרפיה במרכז מ׳ ד׳ אנדרסון לסרטן באוניברסיטת טקסס, שם נמצא צוות של מומחים  בעל הידע והניסיון הנרחבים ביותר בתחום הסרטן הנדיר שיש לגל. למרכז לחקר הסרטן בטקסס  טכנולוגיית הקרנה מתקדמת שלא קיימת בארץ ואמצעים להפקת העזרים הנדרשים להקרנות באופן המותאם אישית לראשו של גל, להפחתת הסיכון לפגיעה במערכת העצבים, בלסת, בלשון ובגרון. תהליך זה מצריך מעקב אחר מצבו הקוגניטיבי של גל, שיקום של מערכת הלימפה, הלסת, שרירי הפנים, הצוואר והכתפיים, ומעקב צמוד אחר גידולים חוזרים. כל הכסף נועד עבור מימון הטיפולים הרבים והממושכים, כיסוי הוצאות השהייה הכרוכות בהם, מעקב ושיקום לשארית חייו.</p>
+
+        <h2>אודה לתרומתכם הנדיבה – כל סכום עשוי להציל חיים!</h2>
+        <p>אני שולחת לכולכם את תודתי מראש, חיבוק גדול ומתפללת לבשורות טובות</p>
+        <p>ענת ברוק גורפונג</p>
+
+        <div class="button-container">
+            <div class="dropdown">
+                <button class="donate-button" onclick="toggleDropdown(this)">לתרומה</button>
+                <div class="dropdown-content" id="donateDropdown">
+                    <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" target="_blank">PayPal</a>
+                    <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">באתר GiveBack</a>
+                </div>
+            </div>
+            <button class="share-button" onclick="toggleShareModal()">לשיתוף</button>
+        </div>
+
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" onclick="toggleShareModal()"></div>
+    <div class="share-modal" id="shareModal">
+        <h3>Share This Campaign</h3>
+        <div class="share-icons">
+            <a href="#" onclick="share('facebook')"><i class="fab fa-facebook"></i></a>
+            <a href="#" onclick="share('twitter')"><i class="fab fa-twitter"></i></a>
+            <a href="#" onclick="share('whatsapp')"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" onclick="share('linkedin')"><i class="fab fa-linkedin"></i></a>
+            <a href="#" onclick="share('email')"><i class="fas fa-envelope"></i></a>
+            <a href="#" onclick="share('copy')"><i class="fas fa-copy"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleShareModal() {
+            const modal = document.getElementById('shareModal');
+            const backdrop = document.getElementById('modalBackdrop');
+            const isVisible = modal.style.display === 'block';
+            
+            modal.style.display = isVisible ? 'none' : 'block';
+            backdrop.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function toggleDropdown(button) {
+            // Close all other dropdowns first
+            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            allDropdowns.forEach(dropdown => {
+                if (dropdown !== button.nextElementSibling) {
+                    dropdown.classList.remove('show');
+                }
+            });
+            
+            // Toggle the clicked dropdown
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('show');
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.donate-button')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                Array.from(dropdowns).forEach(dropdown => {
+                    if (dropdown.classList.contains('show')) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            }
+        }
+
+        function share(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent("עזרו לגל ברוק גורפונג ולמשפחתו להילחם בסרטן");
+            const text = encodeURIComponent("קהילה יקרה אני פונה אל ליבכם, גם בימים מטלטלים אלו, לסיוע בגיוס כדי שבני גל יקבל טיפולים מצילי חיים!");
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}%20${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=${title}&body=${text}%20${url}`;
+                    break;
+                case 'copy':
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                    return;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+            
+            toggleShareModal();
+        }
+    </script>
+
+    <script>
+        async function updateProgress() {
+            try {
+            const response = await fetch('/api/amount');
+            const { amount } = await response.json();
+            const goal = 800000; // Your total goal in dollars
+            
+            // Format amount with commas
+            document.getElementById('current').textContent = amount.toLocaleString();
+            
+            // Calculate and set progress bar width
+            const percentage = Math.min((amount / goal) * 100, 100);
+            document.getElementById('progress').style.width = `${percentage}%`;
+            } catch (error) {
+            console.error('Error fetching amount:', error);
+            }
+        }
+        
+        // Update immediately when page loads
+        updateProgress();
+    </script>
+        
+    </div>
+</body>
+</html>

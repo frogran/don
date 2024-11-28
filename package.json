@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@vercel/kv": "^3.0.0",
+    "@vercel/node": "^3.2.27",
+    "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.3.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "name": "donate-gal-gorfung",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module"
+}
