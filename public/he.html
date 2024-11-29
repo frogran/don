@@ -258,6 +258,22 @@
         .show {
             display: block;
         }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -266,8 +282,13 @@
         
         <h1>עזרו לגל ברוק גורפונג ולמשפחתו להילחם בסרטן</h1>
         
-        <div class="image-container">
-            <img src="/images/head-he.jpg" alt="Gal's photo">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/fEbzsx0HTvg?si=wYqjJJaSmg-JxTIw"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
         </div>
 
         <p>קהילה יקרה, משפחה, חברות, חברים ואנשים טובים באמצע הדרך, אני פונה אליכם, אל ליבכם, גם בימים מטלטלים אלו, לסיוע בגיוס 2 מיליון שקלים כדי שבני גל יקבל טיפולים מצילי חיים!</p>
