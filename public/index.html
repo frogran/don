@@ -234,7 +234,13 @@
           </div>
 
         <div class="button-container">
-            <a href="javascript:void(0)" class="donate-button" onclick="showDonationMessage()">Donate</a>
+            <div class="dropdown">
+                <button class="donate-button" onclick="toggleDropdown(this)">Donate</button>
+                <div class="dropdown-content" id="donateDropdown">
+                    <a href="https://giveback.co.il/project/81252?lang=en" target="_blank">GiveBack</a>
+                    <a href="javascript:void(0)" onclick="showDonationMessage()">Direct donations (email me)</a>
+                </div>
+            </div>
             <!--<a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>-->
             <button class="share-button" onclick="toggleShareModal()">Share</button>
         </div>
@@ -278,7 +284,13 @@
         <p>Thank you for joining me on this journey and for being my strength as I face this fight. Together, we can turn this difficult chapter into one of resilience, hope, and inspiration.</p>
         
         <div class="button-container">
-            <a href="javascript:void(0)" class="donate-button" onclick="showDonationMessage()">Donate</a>
+            <div class="dropdown">
+                <button class="donate-button" onclick="toggleDropdown(this)">Donate</button>
+                <div class="dropdown-content" id="donateDropdown">
+                    <a href="https://giveback.co.il/project/81252?lang=en" target="_blank">GiveBack</a>
+                    <a href="javascript:void(0)" onclick="showDonationMessage()">Direct donations (email me)</a>
+                </div>
+            </div>
             <!--<a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>-->
             <button class="share-button" onclick="toggleShareModal()">Share</button>
         </div>
@@ -344,7 +356,7 @@
         }
 
         function showDonationMessage() {
-            alert("Unfortunately we are currently experiencing issues with PayPal donations. Please email us directly at galgorfung@gmail.com for other options or try again tomorrow. We are so grateful you're here. Thank you");
+            alert("This popup will help you mail me directly at galgorfung@gmail.com, an email account set up for this purpose alone. Thank you!");
             window.location.href = "mailto:galgorfung@gmail.com";
         }
 
