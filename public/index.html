@@ -234,7 +234,8 @@
           </div>
 
         <div class="button-container">
-            <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>
+            <a href="javascript:void(0)" class="donate-button" onclick="showDonationMessage()">Donate</a>
+            <!--<a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>-->
             <button class="share-button" onclick="toggleShareModal()">Share</button>
         </div>
 
@@ -277,7 +278,8 @@
         <p>Thank you for joining me on this journey and for being my strength as I face this fight. Together, we can turn this difficult chapter into one of resilience, hope, and inspiration.</p>
         
         <div class="button-container">
-            <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>
+            <a href="javascript:void(0)" class="donate-button" onclick="showDonationMessage()">Donate</a>
+            <!--<a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" class="donate-button" target="_blank">Donate Now</a>-->
             <button class="share-button" onclick="toggleShareModal()">Share</button>
         </div>
     </div>
@@ -340,9 +342,12 @@
             
             toggleShareModal();
         }
-    </script>
-    
-    <script>
+
+        function showDonationMessage() {
+            alert("Unfortunately we are currently experiencing issues with PayPal donations. Please email us directly at galgorfung@gmail.com for other options or try again tomorrow. We are so grateful you're here. Thank you");
+            window.location.href = "mailto:galgorfung@gmail.com";
+        }
+
         // Replace your existing updateProgress function with this:
         async function updateProgress() {
             try {

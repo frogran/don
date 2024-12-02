@@ -302,12 +302,25 @@
             <div class="dropdown">
                 <button class="donate-button" onclick="toggleDropdown(this)">לתרומה</button>
                 <div class="dropdown-content" id="donateDropdown">
+                    <a href="javascript:void(0)" onclick="showDonationMessage()">לתרומות מחו״ל - PayPal</a>
+                    <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">לתרומות בישראל - אתר GiveBack</a>
+                </div>
+            </div>
+            <button class="share-button" onclick="toggleShareModal()">לשיתוף</button>
+        </div>
+
+        <!--
+        <div class="button-container">
+            <div class="dropdown">
+                <button class="donate-button" onclick="toggleDropdown(this)">לתרומה</button>
+                <div class="dropdown-content" id="donateDropdown">
                     <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" target="_blank">לתרומות מחו״ל - PayPal</a>
                     <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">לתרומות בישראל - אתר GiveBack</a>
                 </div>
             </div>
             <button class="share-button" onclick="toggleShareModal()">לשיתוף</button>
         </div>
+        -->
 
         <div class="progress-container">
             <div class="progress-bar">
@@ -346,8 +359,8 @@
             <div class="dropdown">
                 <button class="donate-button" onclick="toggleDropdown(this)">לתרומה</button>
                 <div class="dropdown-content" id="donateDropdown">
-                    <a href="https://www.paypal.com/donate/?business=DF4T5JB2PQ8T4&no_recurring=1&item_name=Help+my+son+Gal+fight+against+a+rare+cancer+and+keep+his+dream+alive&currency_code=USD" target="_blank">PayPal</a>
-                    <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">באתר GiveBack</a>
+                    <a href="javascript:void(0)" onclick="showDonationMessage()">לתרומות מחו״ל - PayPal</a>
+                    <a href="https://giveback.co.il/project/81252?lang=he" target="_blank">לתרומות בישראל - אתר GiveBack</a>
                 </div>
             </div>
             <button class="share-button" onclick="toggleShareModal()">לשיתוף</button>
@@ -439,9 +452,12 @@
             
             toggleShareModal();
         }
-    </script>
 
-    <script>
+        function showDonationMessage() {
+            alert("Unfortunately we are currently experiencing issues with PayPal donations. Please email us directly at galgorfung@gmail.com for other options or try again tomorrow. We are so grateful you're here. Thank you");
+            window.location.href = "mailto:galgorfung@gmail.com";
+        }
+
         async function updateProgress() {
             try {
             const response = await fetch('/api/amount');
